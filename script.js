@@ -14,9 +14,9 @@ function writePassword() {
 generateBtn.addEventListener("click", writePassword);
 
 var lowercase = "abcdefghijklmnopqrstuvwxyz"
-var uppercase = ""
-var numeric = ""
-var specialCharacters = ""
+var uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+var numeric = "1234567890"
+var special =  [ "!", "$", "%", "&", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "<", "=", ">", "?", "@", "[", "]", "^", "_", "`", "{", "|", "}", "~", ]
 var temporaryPassword= ""
 var password = ""
 
@@ -31,14 +31,31 @@ function generatePassword() {
     alert("Must be less than 128 characters")
     return null;
   }
-  console.log(passwordLength);
+   
   var lowercaseCharacters = confirm("Would you like lowercase characters?");
-  console.log(lowercaseCharacters);
+  
   if(lowercaseCharacters){
     temporaryPassword+=lowercase;
   }
-  console.log(temporaryPassword);
 
+  var uppercaseCharacters = confirm("Would you like uppercase characters?");
+
+  if(uppercaseCharacters){
+    temporaryPassword+=uppercase;
+  }
+
+  var numericCharacters = confirm("Would you like numeric characters?");
+  
+  if(numericCharacters){
+    temporaryPassword+=numeric;
+  }
+  
+  var specialCharacters = confirm("Would you like special characters?");
+  
+  if(specialCharacters){
+    temporaryPassword+=special;
+  }
+  
   for (var i = 0; i < passwordLength; i++) {
     password += temporaryPassword.charAt(Math.floor(Math.random() * temporaryPassword.length));
   }
