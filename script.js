@@ -22,22 +22,19 @@ var password = ""
 
 
 function generatePassword() {
-  var passwordLength = prompt("How long do you want your password?(Between 8-128 Characters");
-  if(passwordLength < 8){
-    alert("Must be at least 8 characters long")
-    return null;
+  var passwordLength = prompt("How long do you want your password?(Between 8-128 Characters)");
+  console.log(passwordLength);
+  //This will make sure the user is inputing a value between 8-128, and is a number.
+  if(passwordLength <= 7 || passwordLength >= 129 || isNaN(passwordLength)){
+    alert("Must be between 8 and 128 characters")
+    generatePassword();
   }
-  if(passwordLength > 128) {
-    alert("Must be less than 128 characters")
-    return null;
-  }
-   
   var lowercaseCharacters = confirm("Would you like lowercase characters?");
-  
+  //This is where the user chooses if they want Lowercase letters
   if(lowercaseCharacters){
     temporaryPassword+=lowercase;
   }
-
+  //If lowercase is selected, temporaryPassword stores the choice.. Same for all below.
   var uppercaseCharacters = confirm("Would you like uppercase characters?");
 
   if(uppercaseCharacters){
@@ -55,15 +52,14 @@ function generatePassword() {
   if(specialCharacters){
     temporaryPassword+=special;
   }
-  
+
   for (var i = 0; i < passwordLength; i++) {
     password += temporaryPassword.charAt(Math.floor(Math.random() * temporaryPassword.length));
   }
-
-return password;
-
-
-
+  
+  return password;
+  
 }
+
 
 
